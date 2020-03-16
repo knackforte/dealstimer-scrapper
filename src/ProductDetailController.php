@@ -52,13 +52,15 @@ class ProductDetailController extends ProductDetailControllerAbstract
             $single_product = $dom -> find('.s-expand-height.s-include-content-margin.s-border-bottom');
             $image = $single_product -> find('.a-section.aok-relative.s-image-square-aspect');
             $permalink = $single_product -> find('.a-size-mini.a-spacing-none.a-color-base.s-line-clamp-4 ');
+            $price = $single_product -> find('.a-offscreen');
 
             array_push(
                 $detailCard_array,
                 ProductDetail::create([
                     'name'      =>  $this->sanitizeNodeText($single_product -> find('.a-size-base-plus.a-color-base.a-text-normal')),
                     'image_url' =>  $image -> find('img')->getAttribute('src'),
-                    'permalink' => 'https://amazon.com'. $permalink -> find('a')->getAttribute('href')
+                    'permalink' => 'https://amazon.com'. $permalink -> find('a')->getAttribute('href'),
+                    'price' => $this->sanitizeNodeText($price)
                 ])
             );
         }

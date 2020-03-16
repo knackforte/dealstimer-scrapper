@@ -22,6 +22,8 @@ class ProductDetail extends ModelAbstract implements \JsonSerializable
      */
     protected $permalink = null;
 
+    protected $price = null;
+
     /**
      * @return string
      */
@@ -45,7 +47,10 @@ class ProductDetail extends ModelAbstract implements \JsonSerializable
     {
         return $this->image_url;
     }
-
+    public function getPrice()
+    {
+        return $this->price;
+    }
 
 
     public function initProperties($value, $prop)
@@ -59,6 +64,9 @@ class ProductDetail extends ModelAbstract implements \JsonSerializable
                 break;
             case 'image_url':
                 $this->image_url = $value;
+                break;
+            case 'price':
+                $this->price = $value;
                 break;
         }
     }
@@ -74,6 +82,7 @@ class ProductDetail extends ModelAbstract implements \JsonSerializable
             'name' => $this->getName(),
             'permalink' => $this->getPermalink(),
             'image_url' => $this->getImage_url(),
+            'price'     => $this->getPrice(),
         ];
     }
 }
